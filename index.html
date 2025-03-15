@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+    <title>Trầm ❤ Trang</title>
+    <style>
+        /* Ẩn iframe khỏi màn hình */
+        #soundcloud-player {
+            display: none;
+        }
+
+        /* Tùy chỉnh giao diện nút bấm */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>          
+    <div id="wrapper">
+        <h1>LOVE CLOCK</h1>
+
+        <div id="clock-box">
+            <div id="clock">
+                <date>0 NGÀY</date>
+                <time>00:00:00</time>
+            </div>
+        </div>
+        
+        <div id="info">
+            <div class="one">
+                <img src="https://scontent.fsgn24-2.fna.fbcdn.net/v/t39.30808-6/465590106_1973770546459823_7626555304044460100_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGoT1df__vxXAUNXVy6_eJeeQ33UcAUnHR5DfdRwBScdJNQWLwDCHnmla2aVzGE8xKgszXRzUYuG5EGHe_cr0pJ&_nc_ohc=N5oOuwrwQmcQ7kNvgF7TmjQ&_nc_oc=AdjCenP3LzB4Kg7PBmUvMNBiH2B_84njmtu07d38s5ELxTWfsp3FlqJu-_MukCBVYY8&_nc_zt=23&_nc_ht=scontent.fsgn24-2.fna&_nc_gid=mWpRXlPh4JMb0dMlVjGHtg&oh=00_AYF7tZYjF2It05LVdAIoZjlm3dMuz0npXni13YcQ_HJmqQ&oe=67DAD69A" class="avt">
+                <p>anh bé 💝</p>
+            </div>
+            <div id="heart">
+                <button id="play-pause-button">❤</button>
+                <br>
+                <anni>...</anni>
+            </div>
+            <div class="two">
+                <img src="https://scontent.fsgn24-1.fna.fbcdn.net/v/t39.30808-6/460633318_856424293247060_1913054681632737534_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFZ0euav9CdlFEunHR_Dk05Q4HKXD3qe_5DgcpcPep7_r9upoe8cy22FyJ4bA0Pa7zengdn9-ZH3f8NGfqAmV4M&_nc_ohc=6cHGBMqoPPsQ7kNvgE9fhyi&_nc_oc=AdiTD4qJquNv_z4r-EyJczzKRItqu-JMEPJoDeEL8M64cKZEFyCIg3nPzpnkk6Eb37Q&_nc_zt=23&_nc_ht=scontent.fsgn24-1.fna&_nc_gid=a1YE98lMQ8Go8q16oJ_0vQ&oh=00_AYHtRjF0fm5bxrW8iolU6Obe9i_YQ13vICBfCqO9Zkn_BQ&oe=67DAD2A7" alt="Hình ảnh từ Facebook" style="max-width: 100%; height: auto;" class="avt">
+                <p>em bé 💝</p>
+            </div>
+        </div>
+        
+        <div id="music">
+
+            <!-- Phần tử iframe bị ẩn -->
+            <iframe 
+                id="soundcloud-player"
+                width="100%" 
+                height="300" 
+                scrolling="no" 
+                frameborder="no" 
+                allow="autoplay" 
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/308334317&color=%2331568a&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+            </iframe>
+        </div> 
+    </div> 
+    
+    <!-- Thêm thư viện SoundCloud API -->
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+
+    <!-- Thêm JavaScript -->
+    <script>
+        // Đảm bảo rằng SoundCloud API đã được tải trước khi sử dụng
+        window.onload = function() {
+            // Lấy tham chiếu đến iframe
+            const iframe = document.getElementById('soundcloud-player');
+            const widget = SC.Widget(iframe);
+
+            let isPlaying = false;
+            // Lấy tham chiếu đến nút
+            const playPauseButton = document.getElementById('play-pause-button');
+            
+            // Thêm sự kiện click cho nút
+            playPauseButton.addEventListener('click', (event) => {
+                // Tạo hiệu ứng trái tim bung tỏa
+                createHeartExplosion(event);
+                if(isPlaying){
+                    playPauseButton.textContent = '❤';
+                    widget.pause();
+                } else {
+                    playPauseButton.textContent = '❤';
+                    widget.play();
+                }
+                // Đảo ngược trạng thái
+                isPlaying = !isPlaying;
+            });
+        };
+
+        // Hàm tạo hiệu ứng trái tim bung tỏa
+        function createHeartExplosion(event) {
+            for (let i = 0; i < 9; i++) { // Tạo 9 trái tim
+                const heart = document.createElement('div');
+                heart.classList.add('heart-explosion');
+
+                // Đặt vị trí ngẫu nhiên xung quanh vị trí click
+                heart.style.left = `${event.clientX - 20 + Math.random() * 40 - 20}px`;
+                heart.style.top = `${event.clientY - 20 + Math.random() * 40 - 20}px`;
+
+                // Thêm trái tim vào body
+                document.body.appendChild(heart);
+
+                // Xóa trái tim sau khi hiệu ứng kết thúc
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000); // Thời gian phải khớp với thời lượng animation (2 giây)
+            }
+        }
+
+        // Tạo hiệu ứng tuyết rơi
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.textContent = '❤';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 500);
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
