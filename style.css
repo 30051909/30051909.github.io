@@ -88,7 +88,7 @@ time {
 
 #heart {
     font-size: 44px;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
 }
 
@@ -163,7 +163,7 @@ footer {
 .snowflake {
     position: fixed;
     top: -10px;
-    color: rgb(255, 0, 119);
+    color: rgb(221, 121, 168);
     font-size: 1em;
     pointer-events: none;
     animation: fall linear infinite;
