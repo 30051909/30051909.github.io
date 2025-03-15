@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+    <!-- Thêm thư viện Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Trầm ❤ Trang</title>
     <style>
         /* Ẩn iframe khỏi màn hình */
@@ -39,7 +40,9 @@
                 <p>anh bé 💝</p>
             </div>
             <div id="heart">
-                <button id="play-pause-button">❤</button>
+                <button id="play-pause-button">
+                    <i class="bi bi-heart-fill heart-icon"></i>
+                </button>   
                 <br>
                 <anni>...</anni>
             </div>
@@ -83,11 +86,13 @@
             playPauseButton.addEventListener('click', (event) => {
                 // Tạo hiệu ứng trái tim bung tỏa
                 createHeartExplosion(event);
-                if(isPlaying){
-                    playPauseButton.textContent = '❤';
+                if (isPlaying) {
+                    // Thay thế biểu tượng bằng Bootstrap Icon
+                    playPauseButton.innerHTML = '<i class="bi bi-heart-fill heart-icon"></i>';
                     widget.pause();
                 } else {
-                    playPauseButton.textContent = '❤';
+                    // Thay thế biểu tượng bằng Bootstrap Icon
+                    playPauseButton.innerHTML = '<i class="bi bi-heart-fill heart-icon"></i>';
                     widget.play();
                 }
                 // Đảo ngược trạng thái
@@ -119,7 +124,7 @@
         function createSnowflake() {
             const snowflake = document.createElement('div');
             snowflake.className = 'snowflake';
-            snowflake.textContent = '❤';
+            snowflake.innerHTML = '<i class="bi bi-heart-fill heart-icon"></i>';
             snowflake.style.left = Math.random() * 100 + 'vw';
             snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
             snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
